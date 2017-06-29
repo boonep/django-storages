@@ -223,8 +223,7 @@ class GoogleCloudStorage(Storage):
     def url(self, name):
         # Preserve the trailing slash after normalizing the path.
         name = self._normalize_name(clean_name(name))
-        blob = self._get_blob(self._encode_name(name))
-        return blob.public_url
+        return "https://storage.googleapis.com/{}/{}".format(self.bucket_name, name)
 
     def get_available_name(self, name, max_length=None):
         if self.file_overwrite:
